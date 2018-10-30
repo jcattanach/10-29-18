@@ -3,17 +3,25 @@ let btnShowTasks = document.querySelector('#btnShowTasks')
 let textboxEnterTask = document.querySelector('#textboxEnterTask')
 let textboxEnterPriority = document.querySelector('#textboxEnterPriority')
 let taskListElement = document.querySelector('#taskListElement')
+let completedTaskList = document.querySelector('#completedTaskList')
+console.log(completedTaskList)
 
-
+function changeList(whichList) {
+  if (whichList.parentElement == taskListElement) {
+    completedTaskList.appendChild(whichList)
+  } else {
+    taskListElement.appendChild(whichList)
+  }}
 
 function displayTasks(list){
-  taskListElement.innerHTML = ''
+  taskListElement.innerHTML
+  = ''
   let liItems = list.map(function(listItem){
     return `
     <li>
-    <input type='checkbox'/>
-    <label><b>${listItem.taskName}</b></label>
-    <label>${listItem.priority}</label>
+      <input type='checkbox' onchange='changeList(this.parentElement)'/>
+      <label><b>${listItem.taskName}</b></label>
+      <label>${listItem.priority}</label>
     </li>`
   })
   taskListElement.insertAdjacentHTML('beforeend', liItems.join(''))
