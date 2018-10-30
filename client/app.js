@@ -7,8 +7,14 @@ let taskListElement = document.querySelector('#taskListElement')
 
 
 function displayTasks(list){
+  taskListElement.innerHTML = ''
   let liItems = list.map(function(listItem){
-    return `<li><h4>${listItem.taskName}</h4><p>${listItem.priority}</p></li>`
+    return `
+    <li>
+    <input type='checkbox'/>
+    <label><b>${listItem.taskName}</b></label>
+    <label>${listItem.priority}</label>
+    </li>`
   })
   taskListElement.insertAdjacentHTML('beforeend', liItems.join(''))
 }
